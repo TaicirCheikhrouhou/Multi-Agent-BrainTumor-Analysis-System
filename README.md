@@ -1,13 +1,19 @@
 # 🧠 BrainTumorAISystem
 
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/streamlit-v1.x-yellow)](https://streamlit.io/)
-[![CrewAI](https://img.shields.io/badge/CrewAI-agent‑pipeline‑brightgreen)](https://crewai.dev/)
-[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+![Build Status](https://img.shields.io/github/actions/workflow/status/TaicirCheikhrouhou/Multi-Agent-BrainTumor-Analysis-System/main.yml?branch=main)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Streamlit](https://img.shields.io/badge/streamlit-v1.x-yellow)
+![TensorFlow](https://img.shields.io/badge/tensorflow-2.13-orange)
+![License](https://img.shields.io/github/license/TaicirCheikhrouhou/Multi-Agent-BrainTumor-Analysis-System)
+![Stars](https://img.shields.io/github/stars/TaicirCheikhrouhou/Multi-Agent-BrainTumor-Analysis-System)
+![Forks](https://img.shields.io/github/forks/TaicirCheikhrouhou/Multi-Agent-BrainTumor-Analysis-System)
+![Contributors](https://img.shields.io/github/contributors/TaicirCheikhrouhou/Multi-Agent-BrainTumor-Analysis-System)
+![Last Commit](https://img.shields.io/github/last-commit/TaicirCheikhrouhou/Multi-Agent-BrainTumor-Analysis-System)
 
 ## 🚀 Project Overview
 
-**BrainTumorAISystem** is an AI-powered multi-agent system for automated brain tumor analysis using MRI images. It orchestrates specialized agents to classify tumors, provide clinical insights, recommend treatments, and generate medical reports—all through an intuitive Streamlit interface. Strengths include modular design, seamless integration of ML and LLMs, and privacy-focused local execution.
+**BrainTumorAISystem** is an AI-powered multi-agent system for automated brain tumor analysis using MRI images. It orchestrates specialized agents to classify tumors, provide clinical insights, recommend treatments, and generate medical reports—all through an intuitive Streamlit interface. 
+Strengths include modular design, seamless integration of ML and LLMs, and privacy-focused local execution.
 
 ---
 
@@ -38,7 +44,18 @@ Results + Downloadable Report
 
 ---
 
-## ⚡ Quick Start
+## 📦 Folder Structure
+```
+├── crew/                     # CrewAI agents + task definitions
+├── models/                   # Model artifacts
+├── tools/                    # Tool modules used by agents
+├── config.py                 # LLM and environment configuration
+├── app.py                    # Streamlit interface
+├── neo4j_connector.py        # DB connector
+├── neo4j_visualizer.py       # Graph rendering
+└── requirements.txt          # Dependencies
+```
+## Quick Start
 
 ### 1. Clone the repo
 ```bash
@@ -75,27 +92,14 @@ models/best_model_VGG19.keras
 streamlit run app.py
 ```
 
-## 🧠 Neo4j Integration (Optional)
+## 🧠 Neo4j Integration 
 To enable medical knowledge graph features:
 - Install Neo4j Desktop or Server
 - Configure connection in [`neo4j_connector.py`](neo4j_connector.py )
 - Use sidebar buttons to test and render the graph
 
-## 🧪 Example Output
-*(Add screenshots or animated walkthroughs here)*  
+## 🧪 Example Output 
 Upload → Agent Progress → Results per agent → Final medical report
-
-## 📦 Folder Structure
-```
-├── crew/                     # CrewAI agents + task definitions
-├── models/                   # Model artifacts
-├── tools/                    # Tool modules used by agents
-├── config.py                 # LLM and environment configuration
-├── app.py                    # Streamlit interface
-├── neo4j_connector.py        # DB connector
-├── neo4j_visualizer.py       # Graph rendering
-└── requirements.txt          # Dependencies
-```
 
 ## 🙌 Contributing
 We welcome contributions! Feel free to open issues or propose enhancements.
