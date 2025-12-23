@@ -159,7 +159,6 @@ def init_session_state():
         'results': {},
         'final_report': None,
         'image_path': None,
-        'gradcam_path': None,
         'start_time': None
     }
     for key, value in defaults.items():
@@ -296,7 +295,6 @@ with col1:
             st.session_state.current_agent = 0
             st.session_state.results = {}
             st.session_state.final_report = None
-            st.session_state.gradcam_path = None
 
         # Display image
         st.markdown('<div class="image-container">', unsafe_allow_html=True)
