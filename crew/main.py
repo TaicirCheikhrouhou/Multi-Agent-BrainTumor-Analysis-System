@@ -5,13 +5,13 @@ from crew.tasks import (
     create_recommendations_task,
     create_report_task
 )
-
 from crew.agents import (
     classifier_agent,
     clinical_analyst_agent,
     recommendations_agent,
     report_agent
 )
+
 
 class BrainTumorAnalysisCrew:
     """CrewAI-based system for comprehensive brain tumor MRI analysis."""
@@ -21,7 +21,8 @@ class BrainTumorAnalysisCrew:
         self.results = {}
 
     def analyze(self, image_path: str):
-        """Execute the complete analysis workflow for brain tumor detection and analysis.
+        """
+        Execute the complete analysis workflow for brain tumor detection and analysis.
 
         Args:
             image_path (str): Path to the MRI image file to analyze.
@@ -31,40 +32,32 @@ class BrainTumorAnalysisCrew:
                  recommendations, and final medical report.
         """
 
-        # Create tasks with proper parameter passing
+        # 1️⃣ Classification task
         classification_task = create_classification_task(image_path)
-
-        # Execute classification first to get results
-        crew_temp = Crew(
+        classification_crew = Crew(
             agents=[classifier_agent],
             tasks=[classification_task],
             process=Process.sequential,
             verbose=True
         )
-        classification_result = crew_temp.kickoff()
+        classification_result = classification_crew.kickoff()
 
-        # Create subsequent tasks with results
+        # 2️⃣ Create subsequent tasks (all using classification result)
         clinical_task = create_clinical_analysis_task(str(classification_result))
         recommendations_task = create_recommendations_task(str(classification_result))
         report_task = create_report_task(
             str(classification_result),
-            str(classification_result),  # Placeholder - should be actual clinical result
-            str(classification_result)   # Placeholder - should be actual recommendations
+            str(classification_result),  # Placeholder - could be clinical result later
+            str(classification_result)   # Placeholder - could be recommendations later
         )
 
-        # Create the full crew
-        crew = Crew(
-            agents=[
-                clinical_analyst_agent,
-                recommendations_agent,
-                report_agent
-            ],
+        # 3️⃣ Full crew for remaining agents
+        full_crew = Crew(
+            agents=[clinical_analyst_agent, recommendations_agent, report_agent],
             tasks=[clinical_task, recommendations_task, report_task],
             process=Process.sequential,
             verbose=True
         )
-
-        # Execute the analysis
-        result = crew.kickoff()
+        result = full_crew.kickoff()
 
         return result
